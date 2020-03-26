@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="mz.co.insystems.mobicare">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+
+    <!-- Required to show current location -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <uses-feature
+        android:name="android.hardware.location.gps"
+        android:required="true" />
+
+    <!-- Required OpenGL ES 2.0. for Maps V2 -->
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="false" />
+
+    <application
+        android:name=".sync.NetworkController"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity
+            android:name=".activities.user.login.LoginActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+            android:theme="@style/FullscreenTheme"
+            android:windowSoftInputMode="stateVisible|adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.user.registration.UserRegistrationActivity"
+            android:label="@string/regist_user"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activities.search.SearchActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize">
+
+        </activity>
+
+    </application>
+
+</manifest>

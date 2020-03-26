@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#0f9d58</color>
+    <color name="colorPrimaryDark">#0b663a</color>
+    <color name="colorAccent">#1be784</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="color_line">#c0c0c0</color>
+    <color name="button_light_back">#1eb56c</color>
+    <color name="button_dark_back">#6aa98a</color>
+    <color name="hint_text_appearence">#a79991</color>
+    <color name="light_green">#c7ccca</color>
+    <color name="login_background">#ecf8f2</color>
+
+    <color name="spinner_back_color">#dff7eb</color>
+
+
+
+    <color name="theme_primary">#0f9d58</color>
+    <color name="theme_primary_dark">#0b663a</color>
+    <color name="theme_primary_light">#1be784</color>
+
+    <color name="theme_background">#FFFFFF</color>
+    <color name="theme_background_inverse">#212121</color>
+
+    <color name="theme_accent_1">#212121</color>
+
+    <color name="theme_primary_trans">#99212121</color>
+
+    <color name="theme_primary_text">#212121</color>
+    <color name="theme_secondary_text">#727272</color>
+    <color name="theme_primary_text_inverted">#ffffff</color>
+    <color name="theme_secondary_text_inverted">#8affffff</color>
+    <color name="theme_icons">#FFFFFF</color>
+    <color name="theme_divider">#B6B6B6</color>
+    <color name="title">#222222</color>
+    <color name="year">#999999</color>
+
+    <color name="text_color">#131715</color>
+    <color name="white">#ffffff</color>
+
+    <color name="search_items">#abf1cf</color>
+    <color name="tab_bar">#057a41</color>
+</resources>

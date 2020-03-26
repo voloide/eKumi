@@ -1,0 +1,139 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".activities.user.login.LoginActivity">
+
+    <data class="ActivityLoginBinding">
+        <variable
+            name="user"
+            type="mz.co.insystems.mobicare.model.user.User"/>
+
+        <variable
+            name="loginActivity"
+            type="mz.co.insystems.mobicare.activities.user.login.LoginActivity"/>
+
+        <variable
+            name="presenter"
+            type="mz.co.insystems.mobicare.activities.user.login.LoginManager"/>
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/login_background">
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true">
+
+            <LinearLayout
+                android:id="@+id/inputs"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/layout_content_padding">
+
+                <ImageView
+                    android:layout_width="@dimen/user_registration_imview_width"
+                    android:layout_height="@dimen/user_registration_imview_heigth"
+                    android:layout_marginBottom="@{loginActivity.keybordOpen ? @dimen/dimen_10dp: @dimen/dimen_70dp}"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/ic_launcher"
+                    />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_user_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:hintEnabled="false"
+                    app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout"
+                    app:errorTextAppearance="@style/TextAppearence.App.TextInputLayout">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/txtUserName"
+                        android:layout_width="match_parent"
+                        android:hint="@string/login_user_name"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:text="@={user.userName}"
+                        style="@style/bottom_border_edit_text_style"
+                        android:imeOptions="actionNext">
+                        <requestFocus />
+                    </android.support.design.widget.TextInputEditText>
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:hintEnabled="false"
+                    app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout"
+                    app:errorTextAppearance="@style/TextAppearence.App.TextInputLayout">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/txtPassword"
+                        android:layout_width="match_parent"
+                        android:hint="@string/login_password"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:text="@={user.password}"
+                        style="@style/bottom_border_edit_text_style"
+                        android:imeOptions="actionDone"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/user_forgotten_pass_link_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/dimen_30dp"
+                    android:layout_marginBottom="@dimen/dimen_14dp"
+                    android:onClick="@{(view) -> presenter.initPasswordReset()}"
+                    style="@style/user_login_links"
+                    android:text="@string/user_forgotten_pass_link_text" />
+
+                <TextView
+                    android:id="@+id/user_registration_link_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/dimen_20dp"
+                    android:layout_marginBottom="@dimen/dimen_14dp"
+                    style="@style/user_login_links"
+                    android:onClick="@{(view) -> presenter.initNewUserCreation()}"
+                    android:text="@string/user_registration_link_text" />
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/fullscreen_content_controls"
+                style="?metaButtonBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:background="@color/black_overlay"
+                android:orientation="horizontal"
+                tools:ignore="UselessParent">
+
+                <Button
+                    android:id="@+id/btnLogin"
+                    style="?metaButtonBarButtonStyle"
+                    android:textColor="@drawable/button_text_color"
+                    android:background="@drawable/button_shape"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="@{(view) -> presenter.login(user)}"
+                    android:text="@string/login_text" />
+
+            </LinearLayout>
+        </FrameLayout>
+
+
+    </RelativeLayout>
+</layout>
