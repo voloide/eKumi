@@ -14,15 +14,17 @@ import mz.co.insystems.mobicare.model.user.User;
  */
 
 public class RecentSearchDaoImpl extends BaseDaoImpl<RecentSearch, Integer> implements RecentRearhDao {
-    protected RecentSearchDaoImpl(Class<RecentSearch> dataClass) throws SQLException {
+
+
+    public RecentSearchDaoImpl(Class<RecentSearch> dataClass) throws SQLException {
         super(dataClass);
     }
 
-    protected RecentSearchDaoImpl(ConnectionSource connectionSource, Class<RecentSearch> dataClass) throws SQLException {
+    public RecentSearchDaoImpl(ConnectionSource connectionSource, Class<RecentSearch> dataClass) throws SQLException {
         super(connectionSource, dataClass);
     }
 
-    protected RecentSearchDaoImpl(ConnectionSource connectionSource, DatabaseTableConfig<RecentSearch> tableConfig) throws SQLException {
+    public RecentSearchDaoImpl(ConnectionSource connectionSource, DatabaseTableConfig<RecentSearch> tableConfig) throws SQLException {
         super(connectionSource, tableConfig);
     }
 

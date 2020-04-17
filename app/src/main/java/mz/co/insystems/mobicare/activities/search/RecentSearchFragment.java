@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
 import java.sql.SQLException;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mz.co.insystems.mobicare.R;
+import mz.co.insystems.mobicare.databinding.FragmentFavoritesBinding;
 import mz.co.insystems.mobicare.model.search.RecentSearch;
 import mz.co.insystems.mobicare.model.user.User;
 
@@ -29,14 +31,13 @@ public class RecentSearchFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,  Bundle savedInstanceState) {
+        FragmentFavoritesBinding fragmentFavoritesBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_favorites, container, false);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favorites, container, false);
+        return fragmentFavoritesBinding.getRoot();
     }
 
     public void loadUserRecents(User user) {
-        if (recentSearchList == null) recentSearchList = new ArrayList<>();
         try {
             recentSearchList = ((SearchActivity) getActivity()).getRecentRearhDao().getAllOfUser(user);
         } catch (SQLException e) {

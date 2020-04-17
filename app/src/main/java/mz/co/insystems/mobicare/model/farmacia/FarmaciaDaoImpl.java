@@ -11,6 +11,8 @@ import java.util.List;
  * Created by Voloide Tamele on 10/23/2017.
  */
 public class FarmaciaDaoImpl extends BaseDaoImpl<Farmacia, Integer> implements FarmaciaDao {
+
+
     public FarmaciaDaoImpl(Class<Farmacia> dataClass) throws SQLException {
         super(dataClass);
     }

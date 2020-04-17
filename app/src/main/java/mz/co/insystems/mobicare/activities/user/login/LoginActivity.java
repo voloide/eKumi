@@ -28,6 +28,7 @@ import mz.co.insystems.mobicare.base.BaseActivity;
 import mz.co.insystems.mobicare.databinding.ActivityLoginBinding;
 import mz.co.insystems.mobicare.model.user.User;
 import mz.co.insystems.mobicare.sync.MobicareSyncService;
+import mz.co.insystems.mobicare.sync.ServiceResponseListener;
 import mz.co.insystems.mobicare.sync.SyncError;
 import mz.co.insystems.mobicare.sync.VolleyResponseListener;
 import mz.co.insystems.mobicare.util.Utilities;
@@ -49,6 +50,7 @@ public class LoginActivity extends BaseActivity implements LoginActions, Runnabl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -169,8 +171,9 @@ public class LoginActivity extends BaseActivity implements LoginActions, Runnabl
         uri.appendPath(Utilities.MD5Crypt(getCurrentUser().getPassword()));
         final String url = uri.build().toString();
 
+        ServiceResponseListener responseListener = new ServiceResponseListener();
         try {
-            getService().makeJsonObjectRequest(Request.Method.GET, url, getCurrentUser().toJsonObject(), getCurrentUser(), new VolleyResponseListener() {
+            getService().makeJsonObjectRequest(Request.Method.GET, url, getCurrentUser().parseToJsonObject(), getCurrentUser(), new VolleyResponseListener() {
                 @Override
                 public void onError(SyncError error) {
 
@@ -179,7 +182,7 @@ public class LoginActivity extends BaseActivity implements LoginActions, Runnabl
                 @Override
                 public void onResponse(JSONObject response, int myStatusCode) {
                     try {
-                        User user = new User().fromJsonObject(response);
+                        User user = utilities.fromJsonObject(response, User.class);
                         createOrUpdateStatus = getmUserDao().createOrUpdate(user);
                         setCurrentUser(user);
 
@@ -202,7 +205,12 @@ public class LoginActivity extends BaseActivity implements LoginActions, Runnabl
     }
 
     private void redirectToSearch() {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(User.TABLE_NAME, getCurrentUser());
+
         Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+        intent.putExtras(bundle);
+
         startActivity(intent);
     }
 
@@ -258,15 +266,6 @@ public class LoginActivity extends BaseActivity implements LoginActions, Runnabl
         }
     }
 
-    @Override
-    public boolean noSyncError() {
-        return false;
-    }
-
-    @Override
-    public boolean syncOperationDone() {
-        return false;
-    }
 
     public boolean isKeybordOpen() {
         return keybordOpen;

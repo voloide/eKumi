@@ -1,5 +1,6 @@
 package mz.co.insystems.mobicare.model.grupofarmaco;
 
+import androidx.databinding.Bindable;
 import androidx.databinding.library.baseAdapters.BR;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -13,12 +14,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.List;
 
 import mz.co.insystems.mobicare.base.BaseVO;
-import mz.co.insystems.mobicare.common.JsonParseble;
 import mz.co.insystems.mobicare.model.contacto.Contacto;
 import mz.co.insystems.mobicare.model.endereco.Endereco;
 import mz.co.insystems.mobicare.model.farmacia.Farmacia;
+import mz.co.insystems.mobicare.model.farmaco.Farmaco;
 
 
 /**
@@ -26,102 +28,65 @@ import mz.co.insystems.mobicare.model.farmacia.Farmacia;
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @DatabaseTable(tableName = GrupoFarmaco.TABLE_NAME_FARMACO, daoClass = GrupoFarmacoDaoImpl.class)
-public class GrupoFarmaco extends BaseVO implements JsonParseble<GrupoFarmaco> {
+public class GrupoFarmaco extends BaseVO {
     public static final String TABLE_NAME_FARMACO			                = "grupo_farmaco";
     public static final String COLUMN_FARMACO_ID 			                = "id";
     public static final String COLUMN_FARMACO_DESIGNACAO			        = "designacao";
+    private static final long serialVersionUID = -5483888414207922057L;
 
-
-    private static final long serialVersionUID = 1L;
-
-    private ObjectMapper objectMapper = new ObjectMapper();
 
     @DatabaseField(columnName = COLUMN_FARMACO_ID, id = true, generatedId = false)
     private long id;
     @DatabaseField(columnName = COLUMN_FARMACO_DESIGNACAO)
     private String designacao;
     @DatabaseField(dataType = DataType.BYTE_ARRAY)
-    private byte[] logo;
+    private String logo;
 
-    @DatabaseField(dataType = DataType.BYTE_ARRAY)
-    private byte[] image;
+    private List<Farmaco> farmacos;
 
     public GrupoFarmaco() {
 
     }
 
-    public void setLogo(byte[] logo) {
-        this.logo = logo;
-    }
-
-    public void setImage(byte[] image) {
-        this.image = image;
-        notifyPropertyChanged(BR.image);
-    }
-
+    @Bindable
     public String getDescricao() {
         return this.designacao;
     }
-
+    @Bindable
     public long getId() {
         return id;
     }
 
-    public Endereco getEndereco() {
-        throw new RuntimeException("Metodo nao aplicavel");
-    }
-
-    public Contacto getContacto() {
-        throw new RuntimeException("Metodo nao aplicavel");
-    }
-
-    public Farmacia getFarmacia() {
-        throw new RuntimeException("Metodo nao aplicavel");
-    }
-
-    public int getDisponibilidade() {
-        throw new RuntimeException("Metodo nao aplicavel");
-    }
-
-    public byte[] getLogo() {
-        return this.logo;
-    }
-
-    public byte[] getImage() {
-        return this.image;
-    }
-
     public void setId(long id) {
         this.id = id;
+        notifyPropertyChanged(BR.id);
     }
-
+    @Bindable
     public String getDesignacao() {
         return designacao;
     }
 
     public void setDesignacao(String designacao) {
         this.designacao = designacao;
+        notifyPropertyChanged(BR.designacao);
+    }
+    @Bindable
+    public String getLogo() {
+        return logo;
     }
 
-
-    @Override
-    public JSONObject toJsonObject() throws JsonProcessingException, JSONException {
-        JSONObject jsonObject = new JSONObject(objectMapper.writeValueAsString(this));
-        return jsonObject;
+    public void setLogo(String logo) {
+        this.logo = logo;
+        notifyPropertyChanged(BR.logo);
     }
 
-    @Override
-    public String toJson() throws JsonProcessingException {
-        return objectMapper.writeValueAsString(this);
+    @Bindable
+    public List<Farmaco> getFarmacos() {
+        return farmacos;
     }
 
-    @Override
-    public GrupoFarmaco fromJson(String jsonData) throws IOException {
-        return objectMapper.readValue(jsonData, GrupoFarmaco.class);
-    }
-
-    @Override
-    public GrupoFarmaco fromJsonObject(JSONObject response) throws IOException {
-        return objectMapper.readValue(String.valueOf(response), GrupoFarmaco.class);
+    public void setFarmacos(List<Farmaco> farmacos) {
+        this.farmacos = farmacos;
+        notifyPropertyChanged(BR.farmacos);
     }
 }

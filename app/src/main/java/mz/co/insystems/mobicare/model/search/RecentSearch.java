@@ -5,16 +5,18 @@ import com.j256.ormlite.table.DatabaseTable;
 
 import java.util.Date;
 
+import mz.co.insystems.mobicare.base.BaseVO;
 import mz.co.insystems.mobicare.model.user.User;
 
 @DatabaseTable(tableName = RecentSearch.TABLE_NAME, daoClass = RecentSearchDaoImpl.class)
-public class RecentSearch {
+public class RecentSearch extends BaseVO {
 
     public static final String TABLE_NAME			    = "recent_search";
     public static final String COLUMN_ID 			    = "id";
     public static final String COLUMN_QUERY_STRING		= "query";
     public static final String COLUMN_DATE		        = "date";
     public static final String COLUMN_USER		        = "user_id";
+    private static final long serialVersionUID = 1802045685732135746L;
 
     @DatabaseField(columnName = COLUMN_ID, id = true, generatedId = true)
     protected long id;

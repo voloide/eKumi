@@ -38,6 +38,7 @@ import mz.co.insystems.mobicare.util.Utilities;
 
 public class Localizacao extends BaseVO implements LocalizacaoSync {
 
+    private static final long serialVersionUID = -3936872078922711026L;
     private Provincia selectedProvincia;
     private Distrito selectedDistrito;
     private Municipio selectedMunicipio;
@@ -289,8 +290,7 @@ public class Localizacao extends BaseVO implements LocalizacaoSync {
 
                 for(int i=0;i<response.length();i++){
                     try {
-                        Provincia provincia = new Provincia();
-                        provincia = provincia.fromJsonObject(response.getJSONObject(i));
+                        Provincia provincia = utilities.fromJsonObject(response.getJSONObject(i), Provincia.class);
                         currentActivity.getProvinciaDao().createIfNotExists(provincia);
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -324,8 +324,7 @@ public class Localizacao extends BaseVO implements LocalizacaoSync {
 
                 for(int i=0;i<response.length();i++){
                     try {
-                        Distrito distrito = new Distrito();
-                        distrito = distrito.fromJsonObject(response.getJSONObject(i));
+                        Distrito distrito = utilities.fromJsonObject(response.getJSONObject(i), Distrito.class);
                         currentActivity.getDistritoDao().createIfNotExists(distrito);
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -355,8 +354,7 @@ public class Localizacao extends BaseVO implements LocalizacaoSync {
 
                 for(int i=0;i<response.length();i++){
                     try {
-                        PostoAdministrativo postoAdministrativo = new PostoAdministrativo();
-                        postoAdministrativo = postoAdministrativo.fromJsonObject(response.getJSONObject(i));
+                        PostoAdministrativo postoAdministrativo = utilities.fromJsonObject(response.getJSONObject(i), PostoAdministrativo.class);
                         currentActivity.getPostoDao().createIfNotExists(postoAdministrativo);
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -398,8 +396,7 @@ public class Localizacao extends BaseVO implements LocalizacaoSync {
 
                 for(int i=0;i<response.length();i++){
                     try {
-                        Municipio municipio = new Municipio();
-                        municipio = municipio.fromJsonObject(response.getJSONObject(i));
+                        Municipio municipio = utilities.fromJsonObject(response.getJSONObject(i), Municipio.class);
                         currentActivity.getMunicipioDao().createIfNotExists(municipio);
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -429,8 +426,7 @@ public class Localizacao extends BaseVO implements LocalizacaoSync {
 
                 for(int i=0;i<response.length();i++){
                     try {
-                        Bairro bairro = new Bairro();
-                        bairro = bairro.fromJsonObject(response.getJSONObject(i));
+                        Bairro bairro = utilities.fromJsonObject(response.getJSONObject(i), Bairro.class);
                         currentActivity.getBairroDao().createIfNotExists(bairro);
                     } catch (JSONException e) {
                         e.printStackTrace();

@@ -1,32 +1,35 @@
 package mz.co.insystems.mobicare.model.farmaco;
 
+import android.widget.ImageView;
+
 import androidx.databinding.Bindable;
+import androidx.databinding.BindingAdapter;
 import androidx.databinding.library.baseAdapters.BR;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.util.List;
 
-import java.io.IOException;
-
+import mz.co.insystems.mobicare.R;
 import mz.co.insystems.mobicare.base.BaseVO;
-import mz.co.insystems.mobicare.common.JsonParseble;
 import mz.co.insystems.mobicare.model.contacto.Contacto;
 import mz.co.insystems.mobicare.model.endereco.Endereco;
 import mz.co.insystems.mobicare.model.farmacia.Farmacia;
+import mz.co.insystems.mobicare.model.farmaciafarmaco.FarmacoFarmacia;
 import mz.co.insystems.mobicare.model.grupofarmaco.GrupoFarmaco;
 import mz.co.insystems.mobicare.model.search.Searchble;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @DatabaseTable(tableName = Farmaco.TABLE_NAME_FARMACO, daoClass = FarmacoDaoImpl.class)
-public class Farmaco extends BaseVO implements JsonParseble<Farmaco>, Searchble {
+public class Farmaco extends BaseVO implements Searchble {
     public static final String TABLE_NAME_FARMACO			        = "farmaco";
     public static final String COLUMN_FARMACO_ID 			        = "id";
     public static final String COLUMN_FARMACO_DESIGNACAO 			= "designacao";
@@ -38,32 +41,26 @@ public class Farmaco extends BaseVO implements JsonParseble<Farmaco>, Searchble 
 
     public static final int FARMACO_DISPONIVEL 	=1;
     public static final int FARMACO_INDISPONIVEL 	= 0;
+    private static final long serialVersionUID = -1261080191252499707L;
 
-    private static final long serialVersionUID = 1L;
 
     @DatabaseField
     private long id;
     @DatabaseField
     private String designacao;
+
     @DatabaseField
-    private int disponibilidade;
-    @DatabaseField()
-    private double preco;
-    @DatabaseField(columnName = COLUMN_FARMACIA_ID, foreign = true, foreignAutoRefresh = true)
-    private Farmacia farmacia;
-    @DatabaseField(dataType = DataType.BYTE_ARRAY)
-    private byte[] logo;
-
-    @DatabaseField(dataType = DataType.BYTE_ARRAY)
-    private byte[] image;
-
-    private ObjectMapper objectMapper = new ObjectMapper();
+    private String logo;
 
     @JsonProperty(GrupoFarmaco.TABLE_NAME_FARMACO)
     @DatabaseField(columnName = COLUMN_FARMACO_GRUPO, foreign = true, foreignAutoRefresh = true)
     private GrupoFarmaco grupoFarmaco;
 
+    @JsonProperty("farmacia")
+    private Farmacia farmacia;
 
+    @JsonProperty("farmacia_farmaco")
+    private FarmacoFarmacia farmacoInfo;
 
     public Farmaco(){}
 
@@ -76,21 +73,31 @@ public class Farmaco extends BaseVO implements JsonParseble<Farmaco>, Searchble 
         return id;
     }
 
-    public Endereco getEndereco() {
-        throw new RuntimeException("Metodo nao aplicavel");
+
+    public int getDisponibilidade() {
+        return this.farmacoInfo.getDisponibilidade();
     }
 
-    public Contacto getContacto() {
-        throw new RuntimeException("Metodo nao aplicavel");
+    @Override
+    public double getPreco() {
+        return this.farmacoInfo.getPreco();
     }
 
-    public Farmacia getFarmacia() {
-        return this.farmacia;
+    @Override
+    public String getFarmaciaName() {
+        return this.farmacia.getDescricao();
     }
 
-    public void setFarmacia(Farmacia farmacia) {
-        this.farmacia = farmacia;
-        notifyPropertyChanged(BR.farmacia);
+    @Override
+    public String getDistancia() {
+        DecimalFormat df = new DecimalFormat("0.00");
+        df.setRoundingMode(RoundingMode.UP);
+        return df.format(this.farmacia.getDistance())+"Km";
+    }
+
+    @Override
+    public String getImage() {
+        return this.logo;
     }
 
     public void setId(long id) {
@@ -106,34 +113,7 @@ public class Farmaco extends BaseVO implements JsonParseble<Farmaco>, Searchble 
         this.designacao = designacao;
         notifyPropertyChanged(BR.designacao);
     }
-    @Bindable
-    public int getDisponibilidade() {
-        return disponibilidade;
-    }
 
-    @Override
-    public byte[] getLogo() {
-        return this.logo;
-    }
-
-    @Override
-    public byte[] getImage() {
-        return this.image;
-    }
-
-    public void setDisponibilidade(int disponibilidade) {
-        this.disponibilidade = disponibilidade;
-        notifyPropertyChanged(BR.disponibilidade);
-    }
-    @Bindable
-    public double getPreco() {
-        return preco;
-    }
-
-    public void setPreco(double preco) {
-        this.preco = preco;
-        notifyPropertyChanged(BR.preco);
-    }
     @Bindable
     public GrupoFarmaco getGrupoFarmaco() {
         return grupoFarmaco;
@@ -144,28 +124,43 @@ public class Farmaco extends BaseVO implements JsonParseble<Farmaco>, Searchble 
         notifyPropertyChanged(BR.grupoFarmaco);
     }
 
-    public String getDescricao() {
-        return this.designacao;
+    @Bindable
+    public String getLogo() {
+        return logo;
     }
 
-    @Override
-    public String toJson() throws JsonProcessingException {
-        return objectMapper.writeValueAsString(this);
+    public void setLogo(String logo) {
+        this.logo = logo;
+        notifyPropertyChanged(BR.logo);
     }
 
-    @Override
-    public Farmaco fromJson(String jsonData) throws IOException {
-        return objectMapper.readValue(jsonData, Farmaco.class);
+    @Bindable
+    public Farmacia getFarmacia() {
+        return farmacia;
     }
 
-    @Override
-    public Farmaco fromJsonObject(JSONObject response) throws IOException {
-        return objectMapper.readValue(String.valueOf(response), Farmaco.class);
+    public void setFarmacia(Farmacia farmacia) {
+        this.farmacia = farmacia;
+        notifyPropertyChanged(BR.farmacia);
     }
 
-    @Override
-    public JSONObject toJsonObject() throws JsonProcessingException, JSONException {
-        JSONObject jsonObject = new JSONObject(objectMapper.writeValueAsString(this));
-        return jsonObject;
+    @Bindable
+    public FarmacoFarmacia getFarmacoInfo() {
+        return farmacoInfo;
+    }
+
+    public void setFarmacoInfo(FarmacoFarmacia farmacoInfo) {
+        this.farmacoInfo = farmacoInfo;
+        notifyPropertyChanged(BR.farmacoInfo);
+    }
+
+    @BindingAdapter({"logo"})
+    public static void loadImage(ImageView imageView, String imageURL) {
+        Glide.with(imageView.getContext())
+                .setDefaultRequestOptions(new RequestOptions()
+                        .circleCrop())
+                .load(imageURL)
+                .placeholder(R.drawable.loading)
+                .into(imageView);
     }
 }

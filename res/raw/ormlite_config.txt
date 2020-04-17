@@ -1,0 +1,429 @@
+#
+# generated on 2020/04/06 03:04:10
+#
+# --table-start--
+dataClass=mz.co.insystems.mobicare.model.user.User
+tableName=user
+# --table-fields-start--
+# --field-start--
+fieldName=id
+columnName=id
+id=true
+# --field-end--
+# --field-start--
+fieldName=userName
+columnName=user_name
+dataPersister=STRING
+# --field-end--
+# --field-start--
+fieldName=password
+# --field-end--
+# --field-start--
+fieldName=estado
+columnName=estado
+# --field-end--
+# --field-start--
+fieldName=pessoa
+columnName=pessoa_id
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --field-start--
+fieldName=farmacia
+columnName=farmacia_id
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=mz.co.insystems.mobicare.model.pessoa.Pessoa
+tableName=pessoa
+# --table-fields-start--
+# --field-start--
+fieldName=id
+columnName=id
+id=true
+# --field-end--
+# --field-start--
+fieldName=name
+columnName=nome
+# --field-end--
+# --field-start--
+fieldName=surname
+columnName=apelido
+# --field-end--
+# --field-start--
+fieldName=contacto
+columnName=contacto_id
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --field-start--
+fieldName=endereco
+columnName=endereco_id
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=mz.co.insystems.mobicare.model.farmacia.Farmacia
+tableName=farmacia
+# --table-fields-start--
+# --field-start--
+fieldName=id
+columnName=id
+id=true
+# --field-end--
+# --field-start--
+fieldName=nome
+# --field-end--
+# --field-start--
+fieldName=estado
+# --field-end--
+# --field-start--
+fieldName=endereco
+columnName=endereco_id
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --field-start--
+fieldName=contacto
+columnName=contacto_id
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --field-start--
+fieldName=servicos
+foreignCollection=true
+# --field-end--
+# --field-start--
+fieldName=logo
+# --field-end--
+# --field-start--
+fieldName=sempreAberto
+columnName=sempre_aberto
+# --field-end--
+# --field-start--
+fieldName=horaInicio
+columnName=hora_inicio
+# --field-end--
+# --field-start--
+fieldName=horaFim
+columnName=hora_fim
+# --field-end--
+# --field-start--
+fieldName=nuit
+columnName=nuit
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=mz.co.insystems.mobicare.model.endereco.Endereco
+tableName=endereco
+# --table-fields-start--
+# --field-start--
+fieldName=id
+columnName=id
+id=true
+# --field-end--
+# --field-start--
+fieldName=latitude
+# --field-end--
+# --field-start--
+fieldName=longitude
+# --field-end--
+# --field-start--
+fieldName=zona
+# --field-end--
+# --field-start--
+fieldName=bairro
+columnName=bairro_id
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --field-start--
+fieldName=postoAdministrativo
+columnName=posto_id
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --field-start--
+fieldName=ruaAvenida
+# --field-end--
+# --field-start--
+fieldName=ncasa
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=mz.co.insystems.mobicare.model.contacto.Contacto
+tableName=contacto
+# --table-fields-start--
+# --field-start--
+fieldName=id
+columnName=id
+id=true
+# --field-end--
+# --field-start--
+fieldName=email
+# --field-end--
+# --field-start--
+fieldName=telefone01
+# --field-end--
+# --field-start--
+fieldName=telefone02
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=mz.co.insystems.mobicare.model.endereco.provincia.Provincia
+tableName=provincia
+# --table-fields-start--
+# --field-start--
+fieldName=id
+columnName=id
+id=true
+# --field-end--
+# --field-start--
+fieldName=designacao
+columnName=designacao
+# --field-end--
+# --field-start--
+fieldName=descricao
+columnName=descricao
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=mz.co.insystems.mobicare.model.endereco.distrito.Distrito
+tableName=distrito
+# --table-fields-start--
+# --field-start--
+fieldName=id
+columnName=id
+id=true
+# --field-end--
+# --field-start--
+fieldName=designacao
+columnName=designacao
+# --field-end--
+# --field-start--
+fieldName=descricao
+columnName=descricao
+# --field-end--
+# --field-start--
+fieldName=provincia
+columnName=provincia_id
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=mz.co.insystems.mobicare.model.endereco.municipio.Municipio
+tableName=municipio
+# --table-fields-start--
+# --field-start--
+fieldName=id
+columnName=id
+id=true
+# --field-end--
+# --field-start--
+fieldName=designacao
+columnName=designacao
+# --field-end--
+# --field-start--
+fieldName=descricao
+columnName=descricao
+# --field-end--
+# --field-start--
+fieldName=provincia
+columnName=provincia_id
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=mz.co.insystems.mobicare.model.endereco.postoadministrativo.PostoAdministrativo
+tableName=postoadministrativo
+# --table-fields-start--
+# --field-start--
+fieldName=id
+columnName=id
+id=true
+# --field-end--
+# --field-start--
+fieldName=designacao
+columnName=designacao
+# --field-end--
+# --field-start--
+fieldName=descricao
+columnName=descricao
+# --field-end--
+# --field-start--
+fieldName=distrito
+columnName=distrito_id
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=mz.co.insystems.mobicare.model.endereco.bairro.Bairro
+tableName=bairro
+# --table-fields-start--
+# --field-start--
+fieldName=id
+columnName=id
+id=true
+# --field-end--
+# --field-start--
+fieldName=designacao
+columnName=designacao
+# --field-end--
+# --field-start--
+fieldName=descricao
+columnName=descricao
+# --field-end--
+# --field-start--
+fieldName=municipio
+columnName=municipio_id
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=mz.co.insystems.mobicare.model.servico.Servico
+tableName=servico
+# --table-fields-start--
+# --field-start--
+fieldName=id
+columnName=id
+id=true
+# --field-end--
+# --field-start--
+fieldName=designacao
+columnName=designacao
+# --field-end--
+# --field-start--
+fieldName=descricao
+columnName=descricao
+# --field-end--
+# --field-start--
+fieldName=estado
+# --field-end--
+# --field-start--
+fieldName=farmacia
+columnName=farmacia_id
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --field-start--
+fieldName=logo
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=mz.co.insystems.mobicare.model.farmaco.Farmaco
+tableName=farmaco
+# --table-fields-start--
+# --field-start--
+fieldName=id
+# --field-end--
+# --field-start--
+fieldName=designacao
+# --field-end--
+# --field-start--
+fieldName=logo
+# --field-end--
+# --field-start--
+fieldName=grupoFarmaco
+columnName=grupofarmaco_id
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=mz.co.insystems.mobicare.model.search.RecentSearch
+tableName=recent_search
+# --table-fields-start--
+# --field-start--
+fieldName=id
+columnName=id
+id=true
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=queryString
+columnName=query
+# --field-end--
+# --field-start--
+fieldName=date
+# --field-end--
+# --field-start--
+fieldName=user
+columnName=user_id
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=mz.co.insystems.mobicare.model.farmaciafarmaco.FarmacoFarmacia
+tableName=farmacia_farmaco
+# --table-fields-start--
+# --field-start--
+fieldName=id
+# --field-end--
+# --field-start--
+fieldName=farmacia
+columnName=farmacia_id
+foreign=true
+# --field-end--
+# --field-start--
+fieldName=farmaco
+columnName=farmaco_id
+foreign=true
+# --field-end--
+# --field-start--
+fieldName=disponibilidade
+# --field-end--
+# --field-start--
+fieldName=preco
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################

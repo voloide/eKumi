@@ -10,6 +10,7 @@ import java.sql.SQLException;
  * Created by Voloide Tamele on 10/23/2017.
  */
 public class ServicoDaoImpl extends BaseDaoImpl<Servico, Integer> implements ServicoDao {
+
     public ServicoDaoImpl(Class<Servico> dataClass) throws SQLException {
         super(dataClass);
     }

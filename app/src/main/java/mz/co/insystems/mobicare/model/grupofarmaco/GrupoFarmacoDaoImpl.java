@@ -10,6 +10,8 @@ import java.sql.SQLException;
  * Created by Voloide Tamele on 10/23/2017.
  */
 public class GrupoFarmacoDaoImpl extends BaseDaoImpl<GrupoFarmaco, Integer> implements GrupoFarmacoDao {
+
+
     public GrupoFarmacoDaoImpl(Class<GrupoFarmaco> dataClass) throws SQLException {
         super(dataClass);
     }
@@ -21,5 +23,4 @@ public class GrupoFarmacoDaoImpl extends BaseDaoImpl<GrupoFarmaco, Integer> impl
     public GrupoFarmacoDaoImpl(ConnectionSource connectionSource, DatabaseTableConfig<GrupoFarmaco> tableConfig) throws SQLException {
         super(connectionSource, tableConfig);
     }
-
 }

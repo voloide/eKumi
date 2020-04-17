@@ -52,4 +52,8 @@
     <string name="loading_user_data">Loading user data, please wait...</string>
     <string name="internet_not_available">Internet not available, check your connection settings.</string>
     <string name="checking_credential">Checking your credentials...</string>
+    <string name="drug_not_available">Não disponível</string>
+    <string name="drug_available">Disponível</string>
+    <string name="action_play_next">Save</string>
+    <string name="action_add_favourite">Add to Favorite</string>
 </resources>

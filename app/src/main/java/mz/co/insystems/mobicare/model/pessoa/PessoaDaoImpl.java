@@ -10,6 +10,8 @@ import java.sql.SQLException;
  * Created by Voloide Tamele on 10/3/2017.
  */
 public class PessoaDaoImpl extends BaseDaoImpl<Pessoa, Integer> implements PessoaDao {
+
+
     public PessoaDaoImpl(Class<Pessoa> dataClass) throws SQLException {
         super(dataClass);
     }

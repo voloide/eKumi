@@ -6,9 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
 import mz.co.insystems.mobicare.R;
+import mz.co.insystems.mobicare.databinding.FragmentSavedSearchBinding;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,10 +27,10 @@ public class SavedSearch extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        FragmentSavedSearchBinding fragmentSavedSearchBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_saved_search, container, false);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_saved_search, container, false);
+        return fragmentSavedSearchBinding.getRoot();
     }
 
 

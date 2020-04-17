@@ -15,7 +15,6 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 import mz.co.insystems.mobicare.base.BaseVO;
-import mz.co.insystems.mobicare.common.JsonParseble;
 import mz.co.insystems.mobicare.common.LocalizacaoObject;
 import mz.co.insystems.mobicare.model.endereco.provincia.Provincia;
 
@@ -23,16 +22,15 @@ import mz.co.insystems.mobicare.model.endereco.provincia.Provincia;
  * Created by voloide on 9/15/16.
  */
 @DatabaseTable(tableName = Municipio.TABLE_NAME_MUNICIPIO, daoClass = MunicipioDaoImpl.class)
-public class Municipio extends BaseVO implements LocalizacaoObject, JsonParseble<Municipio> {
+public class Municipio extends BaseVO implements LocalizacaoObject {
 
     public static final String TABLE_NAME_MUNICIPIO                    = "municipio";
     public static final String COLUMN_MUNICIPIO_ID 			        = "id";
     public static final String COLUMN_MUNICIPIO_DESIGNACAO 			= "designacao";
     public static final String COLUMN_MUNICIPIO_DESCRICAO              = "descricao";
     public static final String COLUMN_MUNICIPIO_PROVINCIA_ID              = "provincia_id";
+    private static final long serialVersionUID = -4699854189374242390L;
 
-
-    private static final long serialVersionUID = 1L;
 
     @DatabaseField(columnName = COLUMN_MUNICIPIO_ID, id = true, generatedId = false)
     private int id;
@@ -43,9 +41,6 @@ public class Municipio extends BaseVO implements LocalizacaoObject, JsonParseble
 
     @DatabaseField(columnName = COLUMN_MUNICIPIO_PROVINCIA_ID, foreign = true, foreignAutoRefresh = true)
     private Provincia provincia;
-
-    private ObjectMapper objectMapper = new ObjectMapper();
-
 
     public Municipio(){}
 
@@ -92,26 +87,5 @@ public class Municipio extends BaseVO implements LocalizacaoObject, JsonParseble
     public void setProvincia(Provincia provincia) {
         this.provincia = provincia;
         notifyPropertyChanged(BR.provincia);
-    }
-
-    @Override
-    public JSONObject toJsonObject() throws JsonProcessingException, JSONException {
-        JSONObject jsonObject = new JSONObject(objectMapper.writeValueAsString(this));
-        return jsonObject;
-    }
-
-    @Override
-    public String toJson() throws JsonProcessingException {
-        return objectMapper.writeValueAsString(this);
-    }
-
-    @Override
-    public Municipio fromJson(String jsonData) throws IOException {
-        return objectMapper.readValue(jsonData, Municipio.class);
-    }
-
-    @Override
-    public Municipio fromJsonObject(JSONObject response) throws IOException {
-        return objectMapper.readValue(String.valueOf(response), Municipio.class);
     }
 }

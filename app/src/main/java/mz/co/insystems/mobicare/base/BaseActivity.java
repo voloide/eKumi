@@ -30,6 +30,7 @@ import mz.co.insystems.mobicare.model.servico.ServicoDao;
 import mz.co.insystems.mobicare.model.user.User;
 import mz.co.insystems.mobicare.model.user.UserDao;
 import mz.co.insystems.mobicare.sync.MobicareSyncService;
+import mz.co.insystems.mobicare.util.Utilities;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
@@ -53,6 +54,8 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     private ProgressDialog syncProgress;
 
+    protected Utilities utilities;
+
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
@@ -64,7 +67,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public BaseActivity(){
-        this.service = new MobicareSyncService();
+        this.service = MobicareSyncService.getInstance();
+        this.utilities = Utilities.getInstance();
     }
 
     public User getCurrentUser() {
@@ -241,7 +245,4 @@ public abstract class BaseActivity extends AppCompatActivity {
         return service;
     }
 
-    public abstract boolean noSyncError();
-
-    public abstract boolean syncOperationDone();
 }

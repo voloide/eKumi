@@ -14,6 +14,10 @@ public class MunicipioDaoImpl extends BaseDaoImpl<Municipio, Integer> implements
         super(dataClass);
     }
 
+    public MunicipioDaoImpl(ConnectionSource connectionSource) throws SQLException {
+        super(connectionSource, Municipio.class);
+    }
+
     public MunicipioDaoImpl(ConnectionSource connectionSource, Class<Municipio> dataClass) throws SQLException {
         super(connectionSource, dataClass);
     }

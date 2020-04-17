@@ -22,11 +22,14 @@ import mz.co.insystems.mobicare.activities.user.registration.UserRegistrationAct
 import mz.co.insystems.mobicare.activities.user.registration.fragment.presenter.UserAccountFragmentEventHandlerImpl;
 import mz.co.insystems.mobicare.activities.user.registration.fragment.view.UserAccountFragmentView;
 
+import mz.co.insystems.mobicare.common.FragmentChangeListener;
+import mz.co.insystems.mobicare.common.SyncStatus;
 import mz.co.insystems.mobicare.databinding.FragmentUserAccountBinding;
 import mz.co.insystems.mobicare.model.user.User;
 import mz.co.insystems.mobicare.sync.MobicareSyncService;
 import mz.co.insystems.mobicare.sync.SyncError;
 import mz.co.insystems.mobicare.sync.VolleyResponseListener;
+import mz.co.insystems.mobicare.util.Utilities;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -40,9 +43,12 @@ public class UserAccountFragment extends Fragment implements UserAccountFragment
     private boolean noSyncError;
     private Thread userCheckThread;
 
+    private Utilities utilities;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.utilities = Utilities.getInstance();
     }
 
     @Override
@@ -116,7 +122,7 @@ public class UserAccountFragment extends Fragment implements UserAccountFragment
                 @Override
                 public void onResponse(JSONObject response, int myStatusCode) {
                     try {
-                        SyncStatus syncStatus = new SyncStatus().fromJsonObject(response);
+                        SyncStatus syncStatus = utilities.fromJsonObject(response, SyncStatus.class);
                         if (syncStatus.getCode() == 100){
                             setUserNameAvalable(true);
                         } else {

@@ -17,14 +17,14 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 import mz.co.insystems.mobicare.base.BaseVO;
-import mz.co.insystems.mobicare.common.JsonParseble;
 import mz.co.insystems.mobicare.model.farmacia.Farmacia;
 import mz.co.insystems.mobicare.model.pessoa.Pessoa;
 import mz.co.insystems.mobicare.util.Utilities;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @DatabaseTable(tableName = User.TABLE_NAME, daoClass = UserDaoImpl.class)
-public class User extends BaseVO implements JsonParseble<User> {
+public class User extends BaseVO {
+
     public static final String TABLE_NAME           = "user";
     public static final String COLUMN_ID 			= "id";
     public static final String COLUMN_USER_NAME		= "user_name";
@@ -33,7 +33,7 @@ public class User extends BaseVO implements JsonParseble<User> {
     public static final String COLUMN_PESSOA_ID		= "pessoa_id";
     public static final String COLUMN_FARMACIA_ID 	= "farmacia_id";
 
-    private ObjectMapper objectMapper;
+    private static final long serialVersionUID = 8371723958393408427L;
 
     @DatabaseField(columnName = COLUMN_ID, id = true, generatedId = false)
     private int id;
@@ -54,6 +54,9 @@ public class User extends BaseVO implements JsonParseble<User> {
     private Farmacia farmacia;
 
     private String passwordConfirm;
+
+    public User() {
+    }
 
     public User(int id) {
         this.id = id;
@@ -82,9 +85,6 @@ public class User extends BaseVO implements JsonParseble<User> {
         return this.estado == 1;
     }
 
-    public User() {
-        this.objectMapper = new ObjectMapper();
-    }
 
     @Bindable
     public int getId() {
@@ -150,23 +150,4 @@ public class User extends BaseVO implements JsonParseble<User> {
         return this.farmacia != null && this.pessoa == null;
     }
 
-    @Override
-    public JSONObject toJsonObject() throws JsonProcessingException, JSONException {
-        return null;
-    }
-
-    @Override
-    public String toJson() throws JsonProcessingException {
-        return null;
-    }
-
-    @Override
-    public User fromJson(String jsonData) throws IOException {
-        return null;
-    }
-
-    @Override
-    public User fromJsonObject(JSONObject response) throws IOException {
-        return null;
-    }
 }

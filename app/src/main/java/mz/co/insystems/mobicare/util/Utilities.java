@@ -8,20 +8,40 @@ import android.net.NetworkInfo;
 
 import androidx.appcompat.app.AlertDialog;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import mz.co.insystems.mobicare.R;
+import mz.co.insystems.mobicare.base.BaseVO;
+import mz.co.insystems.mobicare.model.contacto.Contacto;
+import mz.co.insystems.mobicare.model.farmacia.Farmacia;
 
 /**
  * Created by Voloide Tamele on 10/20/2017.
  */
-public class Utilities {
+public class Utilities implements Serializable {
 
 
+    private static final long serialVersionUID = 4862031727863673038L;
     private static MessageDigest digester;
+
+    private ObjectMapper objectMapper;
+
+    private static Utilities instance;
+
+    public Utilities() {
+       this.objectMapper = new ObjectMapper();;
+    }
 
     static {
         try {
@@ -32,6 +52,12 @@ public class Utilities {
         }
     }
 
+    public static Utilities getInstance(){
+        if (instance == null){
+            instance = new Utilities();
+        }
+        return instance;
+    }
 
     public static String MD5Crypt(String str) {
         if (str == null || str.length() == 0) {
@@ -152,5 +178,22 @@ public class Utilities {
 
     public static Bitmap getImage(byte[] bytes){
         return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+    }
+
+    public <T extends BaseVO> T fromJsonObject(JSONObject response, Class clazz) throws IOException {
+        return (T) objectMapper.readValue(String.valueOf(response), clazz);
+    }
+
+    public JSONObject toJsonObject(BaseVO registo) throws JsonProcessingException, JSONException {
+        JSONObject jsonObject = new JSONObject(objectMapper.writeValueAsString(registo));
+        return jsonObject;
+    }
+
+    public <T extends BaseVO> T fromJson(String jsonData, Class clazz) throws IOException {
+        return (T) objectMapper.readValue(jsonData, clazz);
+    }
+
+    public String toJson(BaseVO registo) throws JsonProcessingException {
+        return objectMapper.writeValueAsString(registo);
     }
 }

@@ -1,14 +1,15 @@
 package mz.co.insystems.mobicare.common;
 
 
-import android.databinding.BindingAdapter;
-import android.databinding.InverseBindingAdapter;
-import android.databinding.InverseBindingListener;
-import android.support.v7.widget.AppCompatSpinner;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.AdapterView;
+
+import androidx.appcompat.widget.AppCompatSpinner;
+import androidx.databinding.BindingAdapter;
+import androidx.databinding.InverseBindingAdapter;
+import androidx.databinding.InverseBindingListener;
 
 /**
  * Created by Voloide Tamele on 3/21/2018.

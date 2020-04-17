@@ -26,6 +26,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import mz.co.insystems.mobicare.model.user.User;
+import mz.co.insystems.mobicare.util.Utilities;
 
 public class MobicareSyncService {
     public static final int RESULT_CANCELED = 0;
@@ -38,7 +39,7 @@ public class MobicareSyncService {
     public static final String API_VERSION      = "v1.0";
     public static final String URI_AUTHORITY    = "mobicare.insystems.co.mz/"+API_VERSION;
 
-    public static final String URI_AUTHORITY_TEST = "10.5.63.212";
+    public static final String URI_AUTHORITY_TEST = "192.168.2.52";
 
     public static final String URL_SERVICE_USER_GET_BY_CREDENTIALS	= "getByCredentials";
     public static final String SERVICE_ENTITY_USER = User.TABLE_NAME;
@@ -52,15 +53,31 @@ public class MobicareSyncService {
     public static final String JSON_ARRAY_REQUEST_TAG   = "json_array_req";
     public static final String SERVICE_AUTHENTICATE     = "authenticate";
     public static final String SERVICE_CHECK_USER_NAME_AVAILABILITY = "isUserNameAvailable";
-    public static final long TWENTY_SECONDS = 20000;
+    public static final long TWENTY_SECONDS = 40000;
 
+    private Utilities utilities = Utilities.getInstance();
 
     private static int myStatusCode;
     private boolean noSyncError;
     private boolean syncOperationDone;
 
+    private static Uri.Builder uriBuilder;
+    protected static MobicareSyncService instance;
+
+    public static MobicareSyncService getInstance(){
+        if (instance == null){
+            instance = new MobicareSyncService();
+        }
+
+        return instance;
+    }
+
+    private static Uri.Builder getUriBuilder(){
+        return new Uri.Builder();
+    }
+
     public Uri.Builder initServiceUri(){
-        Uri.Builder uri =  new Uri.Builder();
+        Uri.Builder uri =  getUriBuilder();
         uri.scheme("http");
         uri.authority(URI_AUTHORITY_TEST);
         uri.appendPath("mobicare");
@@ -202,7 +219,7 @@ public class MobicareSyncService {
                 if (user.getId() <= 0) {
                     Map<String, String> params = new HashMap<String, String>();
                     params.put(User.COLUMN_USER_NAME, user.getUserName());
-                    params.put(User.COLUMN_PASSWORD, user.getPassword());
+                    params.put(User.COLUMN_PASSWORD, Utilities.MD5Crypt(user.getPassword()));
                     return params;
                 }else return super.getParams();
             }

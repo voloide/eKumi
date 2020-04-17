@@ -14,6 +14,10 @@ public class PostoAdministrativoDaoImpl extends BaseDaoImpl<PostoAdministrativo,
         super(dataClass);
     }
 
+    public PostoAdministrativoDaoImpl(ConnectionSource connectionSource) throws SQLException {
+        super(connectionSource, PostoAdministrativo.class);
+    }
+
     public PostoAdministrativoDaoImpl(ConnectionSource connectionSource, Class<PostoAdministrativo> dataClass) throws SQLException {
         super(connectionSource, dataClass);
     }

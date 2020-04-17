@@ -61,13 +61,5 @@ public class UserRegistrationActivity extends BaseActivity implements UserRegist
         super.onDestroy();
     }
 
-    @Override
-    public boolean noSyncError() {
-        return service.noSyncError();
-    }
 
-    @Override
-    public boolean syncOperationDone() {
-        return service.syncOperationDone();
-    }
 }

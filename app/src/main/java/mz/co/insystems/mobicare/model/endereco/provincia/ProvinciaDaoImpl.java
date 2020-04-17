@@ -10,6 +10,7 @@ import java.sql.SQLException;
  * Created by Voloide Tamele on 10/3/2017.
  */
 public class ProvinciaDaoImpl extends BaseDaoImpl<Provincia, Integer> implements ProvinciaDao {
+
     public ProvinciaDaoImpl(Class<Provincia> dataClass) throws SQLException {
         super(dataClass);
     }

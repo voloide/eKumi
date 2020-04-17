@@ -10,6 +10,7 @@ import java.sql.SQLException;
  * Created by Voloide Tamele on 10/3/2017.
  */
 public class FarmacoDaoImpl extends BaseDaoImpl<Farmaco, Integer> implements FarmacoDao {
+
     public FarmacoDaoImpl(Class<Farmaco> dataClass) throws SQLException {
         super(dataClass);
     }

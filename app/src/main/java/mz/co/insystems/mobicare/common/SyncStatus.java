@@ -17,7 +17,7 @@ import mz.co.insystems.mobicare.base.BaseVO;
  */
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class SyncStatus extends BaseVO implements JsonParseble<SyncStatus> {
+public class SyncStatus extends BaseVO {
 
     @JsonProperty("status")
     private int code;
@@ -48,23 +48,4 @@ public class SyncStatus extends BaseVO implements JsonParseble<SyncStatus> {
         this.message = message;
     }
 
-    @Override
-    public JSONObject toJsonObject() throws JsonProcessingException, JSONException {
-        return null;
-    }
-
-    @Override
-    public String toJson() throws JsonProcessingException {
-        return null;
-    }
-
-    @Override
-    public SyncStatus fromJson(String jsonData) throws IOException {
-        return null;
-    }
-
-    @Override
-    public SyncStatus fromJsonObject(JSONObject response) throws IOException {
-        return objectMapper.readValue(String.valueOf(response), SyncStatus.class);
-    }
 }

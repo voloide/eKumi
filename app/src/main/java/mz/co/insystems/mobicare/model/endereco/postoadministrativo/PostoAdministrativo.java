@@ -16,7 +16,6 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 import mz.co.insystems.mobicare.base.BaseVO;
-import mz.co.insystems.mobicare.common.JsonParseble;
 import mz.co.insystems.mobicare.common.LocalizacaoObject;
 import mz.co.insystems.mobicare.model.endereco.distrito.Distrito;
 
@@ -25,15 +24,15 @@ import mz.co.insystems.mobicare.model.endereco.distrito.Distrito;
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @DatabaseTable(tableName = PostoAdministrativo.TABLE_NAME_POSTO, daoClass = PostoAdministrativoDaoImpl.class)
-public class PostoAdministrativo extends BaseVO implements LocalizacaoObject, JsonParseble<PostoAdministrativo> {
+public class PostoAdministrativo extends BaseVO implements LocalizacaoObject {
 
     public static final String TABLE_NAME_POSTO                         = "postoadministrativo";
     public static final String COLUMN_POSTO_ID 			                = "id";
     public static final String COLUMN_POSTO_DESIGNACAO 			        = "designacao";
     public static final String COLUMN_POSTO_DESCRICAO                   = "descricao";
     public static final String COLUMN_POSTO_DISTRITO_ID                 = "distrito_id";
+    private static final long serialVersionUID = -7680745814852435017L;
 
-    private static final long serialVersionUID = 1L;
 
     @DatabaseField(columnName = COLUMN_POSTO_ID, id = true, generatedId = false)
     private int id;
@@ -43,7 +42,6 @@ public class PostoAdministrativo extends BaseVO implements LocalizacaoObject, Js
     private String descricao;
     @DatabaseField(columnName = COLUMN_POSTO_DISTRITO_ID, foreign = true, foreignAutoRefresh = true)
     private Distrito distrito;
-    private ObjectMapper objectMapper = new ObjectMapper();
 
     public PostoAdministrativo(){}
 
@@ -89,24 +87,4 @@ public class PostoAdministrativo extends BaseVO implements LocalizacaoObject, Js
         notifyPropertyChanged(BR.distrito);
     }
 
-    @Override
-    public JSONObject toJsonObject() throws JsonProcessingException, JSONException {
-        JSONObject jsonObject = new JSONObject(objectMapper.writeValueAsString(this));
-        return jsonObject;
-    }
-
-    @Override
-    public String toJson() throws JsonProcessingException {
-        return objectMapper.writeValueAsString(this);
-    }
-
-    @Override
-    public PostoAdministrativo fromJson(String jsonData) throws IOException {
-        return objectMapper.readValue(jsonData, PostoAdministrativo.class);
-    }
-
-    @Override
-    public PostoAdministrativo fromJsonObject(JSONObject response) throws IOException {
-        return objectMapper.readValue(String.valueOf(response), PostoAdministrativo.class);
-    }
 }

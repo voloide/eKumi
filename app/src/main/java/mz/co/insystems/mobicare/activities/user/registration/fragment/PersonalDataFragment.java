@@ -57,8 +57,10 @@ public class PersonalDataFragment extends Fragment implements PersonalDataFragme
 
     private Thread userSyncThread;
 
-    public PersonalDataFragment() {
+    private Utilities utilities;
 
+    public PersonalDataFragment() {
+        utilities = Utilities.getInstance();
     }
 
     @Override
@@ -230,7 +232,7 @@ public class PersonalDataFragment extends Fragment implements PersonalDataFragme
         final String url = uri.build().toString();
 
         try {
-            getMyActivity().getService().makeJsonObjectRequest(Request.Method.PUT, url, getCurrentUser().toJsonObject(), getCurrentUser(), new VolleyResponseListener() {
+            getMyActivity().getService().makeJsonObjectRequest(Request.Method.PUT, url, getCurrentUser().parseToJsonObject(), getCurrentUser(), new VolleyResponseListener() {
 
                 @Override
                 public void onError(SyncError error) {
@@ -240,7 +242,7 @@ public class PersonalDataFragment extends Fragment implements PersonalDataFragme
                 @Override
                 public void onResponse(JSONObject response, int myStatusCode) {
                     try {
-                        SyncStatus syncStatus = new SyncStatus().fromJsonObject(response);
+                        SyncStatus syncStatus = utilities.fromJsonObject(response, SyncStatus.class);
                         if (syncStatus.getCode() == 100){
                             setUserSent(true);
                         }
@@ -269,7 +271,7 @@ public class PersonalDataFragment extends Fragment implements PersonalDataFragme
         final String url = uri.build().toString();
 
         try {
-            getMyActivity().getService().makeJsonObjectRequest(Request.Method.GET, url, getCurrentUser().toJsonObject(), getCurrentUser(), new VolleyResponseListener() {
+            getMyActivity().getService().makeJsonObjectRequest(Request.Method.GET, url, getCurrentUser().parseToJsonObject(), getCurrentUser(), new VolleyResponseListener() {
                 @Override
                 public void onError(SyncError error) {
                     setNoSyncError(true);
@@ -278,7 +280,7 @@ public class PersonalDataFragment extends Fragment implements PersonalDataFragme
                 @Override
                 public void onResponse(JSONObject response, int myStatusCode) {
                     try {
-                        getMyActivity().getmUserDao().createOrUpdate(new User().fromJsonObject(response));
+                        getMyActivity().getmUserDao().createOrUpdate(utilities.fromJsonObject(response, User.class));
                         setUserCreated(true);
                     } catch (IOException e) {
                         e.printStackTrace();

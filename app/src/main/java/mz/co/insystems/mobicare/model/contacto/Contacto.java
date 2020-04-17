@@ -15,40 +15,37 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 import mz.co.insystems.mobicare.base.BaseVO;
-import mz.co.insystems.mobicare.common.JsonParseble;
+import mz.co.insystems.mobicare.util.Utilities;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @DatabaseTable(tableName = Contacto.TABLE_NAME_CONTACT, daoClass = ContactDaoImpl.class)
-public class Contacto extends BaseVO implements JsonParseble<Contacto> {
+public class Contacto extends BaseVO {
     public static final String TABLE_NAME_CONTACT			    = "contacto";
     public static final String COLUMN_CONTACT_ID 			    = "id";
     public static final String COLUMN_CONTACT_EMAIL 			= "email";
-    public static final String COLUMN_CONTACT_PHONE_NUMBER_MAIN = "mainMobileNumber";
-    public static final String COLUMN_CONTACT_PHONE_NUMBER_AUX 	= "auxMobileNumber";
+    public static final String COLUMN_CONTACT_PHONE_NUMBER_MAIN = "telefone01";
+    public static final String COLUMN_CONTACT_PHONE_NUMBER_AUX 	= "telefone02";
+    private static final long serialVersionUID = 264724605087921392L;
 
-    private static final long serialVersionUID = 1L;
 
     @DatabaseField(columnName = COLUMN_CONTACT_ID, id = true, generatedId = false)
     private int id;
     @DatabaseField
     private String email;
     @DatabaseField
-    private String mainMobileNumber;
+    private String telefone01;
     @DatabaseField
-    private String auxMobileNumber;
+    private String telefone02;
 
-    private ObjectMapper objectMapper;
 
     public Contacto(int id, String email, String mainMobileNumber, String auxMobileNumber) {
         this.id = id;
         this.email = email;
-        this.mainMobileNumber = mainMobileNumber;
-        this.auxMobileNumber = auxMobileNumber;
-        this.objectMapper = new ObjectMapper();
+        this.telefone01 = mainMobileNumber;
+        this.telefone02 = auxMobileNumber;
     }
 
     public Contacto(){
-        this.objectMapper = new ObjectMapper();
     }
 
 
@@ -80,43 +77,22 @@ public class Contacto extends BaseVO implements JsonParseble<Contacto> {
     }
 
     @Bindable
-    public String getMainMobileNumber() {
-        return mainMobileNumber;
+    public String getTelefone01() {
+        return telefone01;
     }
 
-    public void setMainMobileNumber(String mainMobileNumber) {
-        this.mainMobileNumber = mainMobileNumber;
-        notifyPropertyChanged(BR.mainMobileNumber);
+    public void setTelefone01(String mainMobileNumber) {
+        this.telefone01 = mainMobileNumber;
+        notifyPropertyChanged(BR.telefone01);
     }
 
     @Bindable
-    public String getAuxMobileNumber() {
-        return auxMobileNumber;
+    public String getTelefone02() {
+        return telefone02;
     }
 
-    public void setAuxMobileNumber(String auxMobileNumber) {
-        this.auxMobileNumber = auxMobileNumber;
-        notifyPropertyChanged(BR.auxMobileNumber);
-    }
-
-    @Override
-    public JSONObject toJsonObject() throws JsonProcessingException, JSONException {
-        JSONObject jsonObject = new JSONObject(objectMapper.writeValueAsString(this));
-        return jsonObject;
-    }
-
-    @Override
-    public String toJson() throws JsonProcessingException {
-        return objectMapper.writeValueAsString(this);
-    }
-
-    @Override
-    public Contacto fromJson(String jsonData) throws IOException {
-        return objectMapper.readValue(jsonData, Contacto.class);
-    }
-
-    @Override
-    public Contacto fromJsonObject(JSONObject response) throws IOException {
-        return objectMapper.readValue(String.valueOf(response), Contacto.class);
+    public void setTelefone02(String auxMobileNumber) {
+        this.telefone02 = auxMobileNumber;
+        notifyPropertyChanged(BR.telefone02);
     }
 }

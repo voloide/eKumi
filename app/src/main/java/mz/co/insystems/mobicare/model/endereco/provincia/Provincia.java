@@ -16,22 +16,20 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 import mz.co.insystems.mobicare.base.BaseVO;
-import mz.co.insystems.mobicare.common.JsonParseble;
 import mz.co.insystems.mobicare.common.LocalizacaoObject;
 
 /**
  * Created by voloide on 9/15/16.
  */
 @DatabaseTable(tableName = Provincia.TABLE_NAME_PROVINCIA, daoClass = ProvinciaDaoImpl.class)
-public class Provincia extends BaseVO implements LocalizacaoObject, JsonParseble<Provincia> {
+public class Provincia extends BaseVO implements LocalizacaoObject {
 
     public static final String TABLE_NAME_PROVINCIA                 = "provincia";
     public static final String COLUMN_PROVINCIA_ID 			        = "id";
     public static final String COLUMN_PROVINCIA_DESIGNACAO 			= "designacao";
     public static final String COLUMN_PROVINCIA_DESCRICAO           = "descricao";
+    private static final long serialVersionUID = 5171724973120764209L;
 
-
-    private static final long serialVersionUID = 1L;
 
     @DatabaseField(columnName = COLUMN_PROVINCIA_ID, id = true, generatedId = false)
     private int id;
@@ -39,7 +37,6 @@ public class Provincia extends BaseVO implements LocalizacaoObject, JsonParseble
     private String designacao;
     @DatabaseField(columnName = COLUMN_PROVINCIA_DESCRICAO)
     private String descricao;
-    private ObjectMapper objectMapper = new ObjectMapper();
 
     public Provincia(){}
 
@@ -85,27 +82,5 @@ public class Provincia extends BaseVO implements LocalizacaoObject, JsonParseble
                 ", designacao='" + designacao + '\'' +
                 ", descricao='" + descricao + '\'' +
                 '}';
-    }
-
-
-    @Override
-    public JSONObject toJsonObject() throws JsonProcessingException, JSONException {
-        JSONObject jsonObject = new JSONObject(objectMapper.writeValueAsString(this));
-        return jsonObject;
-    }
-
-    @Override
-    public String toJson() throws JsonProcessingException {
-        return objectMapper.writeValueAsString(this);
-    }
-
-    @Override
-    public Provincia fromJson(String jsonData) throws IOException {
-        return objectMapper.readValue(jsonData, Provincia.class);
-    }
-
-    @Override
-    public Provincia fromJsonObject(JSONObject response) throws IOException {
-        return objectMapper.readValue(String.valueOf(response), Provincia.class);
     }
 }

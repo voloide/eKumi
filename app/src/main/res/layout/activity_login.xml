@@ -38,12 +38,12 @@
                 <ImageView
                     android:layout_width="@dimen/user_registration_imview_width"
                     android:layout_height="@dimen/user_registration_imview_heigth"
-                    android:layout_marginBottom="@{loginActivity.keybordOpen ? @dimen/dimen_10dp: @dimen/dimen_70dp}"
+                    android:layout_marginBottom="@dimen/dimen_70dp"
                     android:layout_gravity="center"
                     android:src="@mipmap/ic_launcher"
                     />
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/input_layout_user_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
                     app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout"
                     app:errorTextAppearance="@style/TextAppearence.App.TextInputLayout">
 
-                    <android.support.design.widget.TextInputEditText
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/txtUserName"
                         android:layout_width="match_parent"
                         android:hint="@string/login_user_name"
@@ -61,10 +61,10 @@
                         style="@style/bottom_border_edit_text_style"
                         android:imeOptions="actionNext">
                         <requestFocus />
-                    </android.support.design.widget.TextInputEditText>
-                </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputEditText>
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/input_layout_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
                     app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout"
                     app:errorTextAppearance="@style/TextAppearence.App.TextInputLayout">
 
-                    <android.support.design.widget.TextInputEditText
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/txtPassword"
                         android:layout_width="match_parent"
                         android:hint="@string/login_password"
@@ -82,7 +82,7 @@
                         style="@style/bottom_border_edit_text_style"
                         android:imeOptions="actionDone"/>
 
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:id="@+id/user_forgotten_pass_link_text"

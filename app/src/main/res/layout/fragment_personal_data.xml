@@ -55,7 +55,7 @@
 
 
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/input_layout_apelido"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
                     app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout"
                     app:errorTextAppearance="@style/TextAppearence.App.TextInputLayout">
 
-                    <android.support.design.widget.TextInputEditText
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/txtApelido"
                         android:layout_width="match_parent"
                         android:hint="@string/surname"
@@ -74,9 +74,9 @@
                         android:imeOptions="actionNext"
                         style="@style/edit_text_style"
                         android:background="@drawable/edit_text_border"/>
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/input_layout_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
                     app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout"
                     app:errorTextAppearance="@style/TextAppearence.App.TextInputLayout">
 
-                    <android.support.design.widget.TextInputEditText
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/txtName"
                         android:layout_width="match_parent"
                         android:hint="@string/name"
@@ -95,9 +95,9 @@
                         android:imeOptions="actionNext"
                         style="@style/edit_text_style"
                         android:background="@drawable/edit_text_border"/>
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/input_layout_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -105,7 +105,7 @@
                     app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout"
                     app:errorTextAppearance="@style/TextAppearence.App.TextInputLayout">
 
-                    <android.support.design.widget.TextInputEditText
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/txtEmail"
                         android:layout_width="match_parent"
                         android:hint="@string/email_address"
@@ -117,9 +117,9 @@
                         style="@style/edit_text_style"
                         android:background="@drawable/edit_text_border"/>
 
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/input_layout_telemovel_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -127,21 +127,21 @@
                     app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout"
                     app:errorTextAppearance="@style/TextAppearence.App.TextInputLayout">
 
-                    <android.support.design.widget.TextInputEditText
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/txtMainMobileNumber"
                         android:layout_width="match_parent"
                         android:hint="@string/mainMobileNumber"
-                        android:text="@={user.pessoa.contacto.mainMobileNumber}"
+                        android:text="@={user.pessoa.contacto.telefone01}"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/dimen_5dp"
                         android:inputType="phone"
                         android:imeOptions="actionNext"
                         style="@style/edit_text_style"
                         android:background="@drawable/edit_text_border"/>
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/input_layout_telemovel_2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -149,18 +149,18 @@
                     app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout"
                     app:errorTextAppearance="@style/TextAppearence.App.TextInputLayout">
 
-                    <android.support.design.widget.TextInputEditText
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/txtAuxMobileNumber"
                         android:layout_width="match_parent"
                         android:hint="@string/auxMobileNumber"
-                        android:text="@={user.pessoa.contacto.auxMobileNumber}"
+                        android:text="@={user.pessoa.contacto.telefone02}"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/dimen_5dp"
                         android:inputType="phone"
                         android:imeOptions="actionNext"
                         style="@style/edit_text_style"
                         android:background="@drawable/edit_text_border"/>
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:id="@+id/address"
@@ -206,7 +206,7 @@
 
                 </LinearLayout>
 
-                <android.support.v7.widget.AppCompatSpinner
+                <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/provincia"
                     android:prompt="@string/select_provincia"
                     style="@style/spinner_style"
@@ -214,7 +214,7 @@
                     bind:selectedOpt="@={localizacao.selectedProvincia}"
                 />
 
-                <android.support.v7.widget.AppCompatSpinner
+                <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/distrito"
                     android:prompt="@string/select_distrito"
                     style="@style/spinner_style"
@@ -223,7 +223,7 @@
                     bind:selectedOpt="@={localizacao.selectedDistrito}"
                     />
 
-                <android.support.v7.widget.AppCompatSpinner
+                <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/municipio"
                     android:prompt="@string/select_municipio"
                     style="@style/spinner_style"
@@ -232,7 +232,7 @@
                     bind:selectedOpt="@={localizacao.selectedMunicipio}"
                     />
 
-                <android.support.v7.widget.AppCompatSpinner
+                <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/posto"
                     android:prompt="@string/select_posto"
                     style="@style/spinner_style"
@@ -241,7 +241,7 @@
                     bind:selectedOpt="@={localizacao.selectedPosto}"
                     />
 
-                <android.support.v7.widget.AppCompatSpinner
+                <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/bairro"
                     android:prompt="@string/select_bairro"
                     style="@style/spinner_style"
@@ -251,7 +251,7 @@
                     />
 
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/input_layout_rua_av"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -259,7 +259,7 @@
                     app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout"
                     app:errorTextAppearance="@style/TextAppearence.App.TextInputLayout">
 
-                    <android.support.design.widget.TextInputEditText
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/txtRuaAv"
                         android:layout_width="match_parent"
                         android:hint="@string/rua_av"
@@ -270,9 +270,9 @@
                         android:imeOptions="actionNext"
                         style="@style/edit_text_style"
                         android:background="@drawable/edit_text_border"/>
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/input_layout_house"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -280,7 +280,7 @@
                     app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout"
                     app:errorTextAppearance="@style/TextAppearence.App.TextInputLayout">
 
-                    <android.support.design.widget.TextInputEditText
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/txtHouseNumber"
                         android:layout_width="match_parent"
                         android:hint="@string/houseNumber"
@@ -292,7 +292,7 @@
                         style="@style/edit_text_style"
 
                         android:background="@drawable/edit_text_border"/>
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
 

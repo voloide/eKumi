@@ -1,76 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="?android:attr/selectableItemBackground"
-    android:clickable="true"
-    android:focusable="true"
-    android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="searcheble"
+            type="mz.co.insystems.mobicare.model.search.Searchble" />
+    </data>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:padding="@dimen/dimen_3dp"
-        android:orientation="horizontal">
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="vertical">
 
-        <RelativeLayout
-            android:layout_weight="1"
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_width="0dp">
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:padding="@dimen/dimen_3dp"
+            android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/img_logo"
-                android:layout_width="80dp"
-                android:layout_height="90dp"
-                android:src="@mipmap/ic_launcher"/>
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp">
 
-        </RelativeLayout>
+                <ImageView
+                    android:id="@+id/img_logo"
+                    android:layout_width="80dp"
+                    android:layout_height="90dp"
+                    android:src="@mipmap/ic_launcher"/>
 
-        <RelativeLayout
-            android:layout_weight="4"
-            android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/dimen_4dp"
-            android:layout_width="0dp">
+            </RelativeLayout>
 
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:orientation="vertical">
+            <RelativeLayout
+                android:layout_weight="4"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/dimen_4dp"
+                android:layout_width="0dp">
 
-               <TextView
-                   android:id="@+id/txv_nome"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:textSize="16dp"
-                   android:layout_marginBottom="@dimen/dimen_4dp"
-                   android:textStyle="bold"
-                   android:text="Farmacia Central"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-               <TextView
-                   android:id="@+id/txv_location"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:gravity="center_vertical"
-                   android:drawableLeft="@drawable/ic_action_name"
-                   android:fontFamily="sans-serif"
-                   android:lineSpacingExtra="8sp"
-                   android:text="Av. J Nherere N26, Maputo - Laulane"
-                   android:textAppearance="@style/TextAppearance.AppCompat"
-                   android:typeface="normal" />
+                    <TextView
+                        android:id="@+id/txv_nome"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="16dp"
+                        android:layout_marginBottom="@dimen/dimen_4dp"
+                        android:textStyle="bold"
+                        android:text="@{searcheble.designacao}"/>
 
-               <TextView
-                   android:id="@+id/txv_available"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:gravity="center_vertical"
-                   android:drawableLeft="@drawable/ic_status_available"
-                   android:text="Aberto"/>
+                    <TextView
+                        android:id="@+id/txv_location"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:drawableLeft="@drawable/ic_action_name"
+                        android:fontFamily="sans-serif"
+                        android:lineSpacingExtra="8sp"
+                        android:text="@{searcheble.farmaciaName}"
+                        android:textAppearance="@style/TextAppearance.AppCompat"
+                        android:typeface="normal" />
 
-           </LinearLayout>
-        </RelativeLayout>
-    </LinearLayout>
-</RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/txv_available"
+                            android:layout_width="0dp"
+                            android:layout_weight="3"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:text="@{searcheble.disponibilidade == 1 ? @string/drug_available : @string/drug_not_available }" />
+
+                        <TextView
+                            android:id="@+id/txv_distance"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:text="@{searcheble.distancia }" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</layout>
+

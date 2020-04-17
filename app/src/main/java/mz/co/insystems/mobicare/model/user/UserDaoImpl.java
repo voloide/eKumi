@@ -7,6 +7,8 @@ import com.j256.ormlite.table.DatabaseTableConfig;
 import java.io.Serializable;
 import java.sql.SQLException;
 
+import mz.co.insystems.mobicare.util.Utilities;
+
 /**
  * Created by Voloide Tamele on 10/2/2017.
  */
@@ -34,14 +36,14 @@ public class UserDaoImpl extends BaseDaoImpl<User, Integer> implements UserDao, 
         return this.queryBuilder().where()
                 .eq(User.COLUMN_USER_NAME, user.getUserName())
                 .and()
-                .eq(User.COLUMN_PASSWORD, user.getPassword()).queryForFirst() != null;
+                .eq(User.COLUMN_PASSWORD, Utilities.MD5Crypt(user.getPassword())).queryForFirst() != null;
     }
     @Override
     public User getByCredencials(User user) throws SQLException {
         return this.queryBuilder().where()
                 .eq(User.COLUMN_USER_NAME, user.getUserName())
                 .and()
-                .eq(User.COLUMN_PASSWORD, user.getPassword()).queryForFirst();
+                .eq(User.COLUMN_PASSWORD, Utilities.MD5Crypt(user.getPassword())).queryForFirst();
     }
 
     @Override

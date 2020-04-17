@@ -16,7 +16,6 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 import mz.co.insystems.mobicare.base.BaseVO;
-import mz.co.insystems.mobicare.common.JsonParseble;
 import mz.co.insystems.mobicare.common.LocalizacaoObject;
 import mz.co.insystems.mobicare.model.endereco.municipio.Municipio;
 
@@ -25,7 +24,7 @@ import mz.co.insystems.mobicare.model.endereco.municipio.Municipio;
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @DatabaseTable(tableName = Bairro.TABLE_NAME_BAIRRO, daoClass = BairroDaoImpl.class)
-public class Bairro extends BaseVO implements LocalizacaoObject, JsonParseble<Bairro> {
+public class Bairro extends BaseVO implements LocalizacaoObject {
 
     public static final String TABLE_NAME_BAIRRO                    = "bairro";
     public static final String COLUMN_BAIRRO_ID 			        = "id";
@@ -33,9 +32,8 @@ public class Bairro extends BaseVO implements LocalizacaoObject, JsonParseble<Ba
     public static final String COLUMN_BAIRRO_DESCRICAO              = "descricao";
     public static final String COLUMN_BAIRRO_ZONA                   = "zona";
     public static final String COLUMN_BAIRRO_MUNICIPIO              = "municipio_id";
+    private static final long serialVersionUID = 6135708212768840895L;
 
-
-    private static final long serialVersionUID = 1L;
 
     @DatabaseField(columnName = COLUMN_BAIRRO_ID, id = true, generatedId = false)
     private int id;
@@ -46,10 +44,12 @@ public class Bairro extends BaseVO implements LocalizacaoObject, JsonParseble<Ba
 
     @DatabaseField(columnName = COLUMN_BAIRRO_MUNICIPIO, foreign = true, foreignAutoRefresh = true)
     private Municipio municipio;
-    private ObjectMapper objectMapper = new ObjectMapper();
 
     public Bairro(){}
 
+    public Bairro(String designacao){
+        this.descricao = designacao;
+    }
 
     @Bindable
     public String getDesignacao() {
@@ -92,26 +92,5 @@ public class Bairro extends BaseVO implements LocalizacaoObject, JsonParseble<Ba
     public void setMunicipio(Municipio municipio) {
         this.municipio = municipio;
         notifyPropertyChanged(BR.municipio);
-    }
-
-    @Override
-    public JSONObject toJsonObject() throws JsonProcessingException, JSONException {
-        JSONObject jsonObject = new JSONObject(objectMapper.writeValueAsString(this));
-        return jsonObject;
-    }
-
-    @Override
-    public String toJson() throws JsonProcessingException {
-        return objectMapper.writeValueAsString(this);
-    }
-
-    @Override
-    public Bairro fromJson(String jsonData) throws IOException {
-        return objectMapper.readValue(jsonData, Bairro.class);
-    }
-
-    @Override
-    public Bairro fromJsonObject(JSONObject response) throws IOException {
-        return objectMapper.readValue(String.valueOf(response), Bairro.class);
     }
 }

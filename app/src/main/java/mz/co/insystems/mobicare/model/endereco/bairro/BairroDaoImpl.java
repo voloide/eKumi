@@ -14,6 +14,10 @@ public class BairroDaoImpl extends BaseDaoImpl<Bairro, Integer> implements Bairr
         super(dataClass);
     }
 
+    public BairroDaoImpl(ConnectionSource connectionSource) throws SQLException {
+        super(connectionSource, Bairro.class);
+    }
+
     public BairroDaoImpl(ConnectionSource connectionSource, Class<Bairro> dataClass) throws SQLException {
         super(connectionSource, dataClass);
     }

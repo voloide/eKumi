@@ -14,6 +14,10 @@ public class EnderecoDaoImpl extends BaseDaoImpl<Endereco, Integer> implements E
         super(dataClass);
     }
 
+    public EnderecoDaoImpl(ConnectionSource connectionSource) throws SQLException {
+        super(connectionSource, Endereco.class);
+    }
+
     public EnderecoDaoImpl(ConnectionSource connectionSource, Class<Endereco> dataClass) throws SQLException {
         super(connectionSource, dataClass);
     }

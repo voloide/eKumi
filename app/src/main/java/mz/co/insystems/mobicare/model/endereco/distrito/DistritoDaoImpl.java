@@ -14,6 +14,10 @@ public class DistritoDaoImpl extends BaseDaoImpl<Distrito, Integer> implements D
         super(dataClass);
     }
 
+    public DistritoDaoImpl(ConnectionSource connectionSource) throws SQLException {
+        super(connectionSource, Distrito.class);
+    }
+
     public DistritoDaoImpl(ConnectionSource connectionSource, Class<Distrito> dataClass) throws SQLException {
         super(connectionSource, dataClass);
     }

@@ -4,12 +4,14 @@ import androidx.databinding.Bindable;
 import androidx.databinding.library.baseAdapters.BR;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 import mz.co.insystems.mobicare.base.BaseVO;
 import mz.co.insystems.mobicare.model.endereco.bairro.Bairro;
 import mz.co.insystems.mobicare.model.endereco.postoadministrativo.PostoAdministrativo;
+import mz.co.insystems.mobicare.model.endereco.provincia.Provincia;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @DatabaseTable(tableName = Endereco.TABLE_NAME_ENDERECO, daoClass = EnderecoDaoImpl.class)
@@ -24,8 +26,8 @@ public class Endereco extends BaseVO {
     public static final String COLUMN_ENDERECO_RUA_AV 	            = "ruaAvenida";
     public static final String COLUMN_ENDERECO_ZONA 	            = "zona";
     public static final String COLUMN_ENDERECO_NCASA 	            = "ncasa";
+    private static final long serialVersionUID = -6122062860150619670L;
 
-    private static final long serialVersionUID = 1L;
 
     @DatabaseField(columnName = COLUMN_ENDERECO_ID, id = true, generatedId = false)
     private int id;
@@ -42,9 +44,13 @@ public class Endereco extends BaseVO {
     @DatabaseField(columnName = COLUMN_ENDERECO_POSTO_ID, foreign = true, foreignAutoRefresh = true)
     private PostoAdministrativo postoAdministrativo;
 
+    private String cidade;
+
+    @JsonProperty("ruaAv")
     @DatabaseField
     private String ruaAvenida;
 
+    private Provincia provincia;
 
     @DatabaseField
     private String ncasa;
@@ -133,5 +139,25 @@ public class Endereco extends BaseVO {
     public void setNcasa(String ncasa) {
         this.ncasa = ncasa;
         notifyPropertyChanged(BR.ncasa);
+    }
+
+    @Bindable
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+        notifyPropertyChanged(BR.cidade);
+    }
+
+    @Bindable
+    public Provincia getProvincia() {
+        return provincia;
+    }
+
+    public void setProvincia(Provincia provincia) {
+        this.provincia = provincia;
+        notifyPropertyChanged(BR.provincia);
     }
 }

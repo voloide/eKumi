@@ -21,8 +21,8 @@ public class Pessoa extends BaseVO {
     public static final String COLUMN_SURNAME       = "apelido";
     public static final String COLUMN_CONTACT_ID 	= "contacto_id";
     public static final String COLUMN_ENDERECO_ID 	= "endereco_id";
+    private static final long serialVersionUID = 5789756246180641218L;
 
-    private static final long serialVersionUID = 1L;
 
     @DatabaseField(columnName = COLUMN_ID, id = true)
     private int id;
