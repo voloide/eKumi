@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="activities.search.HomeFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/login_background">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                android:layout_marginBottom="@dimen/dimen_14dp"
+                >
+                <ImageView
+                    android:layout_width="@dimen/user_registration_imview_width"
+                    android:layout_height="@dimen/user_registration_imview_heigth"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/ic_launcher"
+                    />
+
+                <TextView
+                    android:id="@+id/user_registration_title_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/dimen_5dp"
+                    style="@style/ekumi_slogan"
+                    android:text="@string/ekumi_slogan" />
+            </LinearLayout>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:background="@color/color_line"/>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/dimen_10dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="@dimen/dimen_0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:padding="@dimen/dimen_5dp"
+                        android:background="@color/home_thumbs_background"
+                        android:layout_margin="@dimen/dimen_5dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/dimen_70dp"
+                            android:layout_height="@dimen/dimen_70dp"
+                            android:layout_gravity="center"
+                            android:src="@mipmap/ic_medicamentos" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/medicamentos"
+                            android:layout_marginTop="@dimen/dimen_20dp"
+                            android:gravity="center_horizontal" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="@dimen/dimen_0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_margin="@dimen/dimen_5dp"
+                        android:padding="@dimen/dimen_5dp"
+                        android:background="@color/home_thumbs_background"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/dimen_70dp"
+                            android:layout_height="@dimen/dimen_70dp"
+                            android:layout_gravity="center"
+                            android:src="@mipmap/ic_farmacia" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/farm_cias"
+                            android:layout_marginTop="@dimen/dimen_20dp"
+                            android:gravity="center_horizontal" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="@dimen/dimen_0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/home_thumbs_background"
+                        android:layout_margin="@dimen/dimen_5dp"
+                        android:padding="@dimen/dimen_5dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/dimen_70dp"
+                            android:layout_height="@dimen/dimen_70dp"
+                            android:layout_gravity="center"
+                            android:src="@mipmap/ic_disponibilidade" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/disponibilidade"
+                            android:layout_marginTop="@dimen/dimen_20dp"
+                            android:gravity="center_horizontal" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="@dimen/dimen_0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/home_thumbs_background"
+                        android:layout_margin="@dimen/dimen_5dp"
+                        android:padding="@dimen/dimen_5dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/dimen_70dp"
+                            android:layout_height="@dimen/dimen_70dp"
+                            android:layout_gravity="center"
+                            android:src="@mipmap/ic_custo" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/custo"
+                            android:layout_marginTop="@dimen/dimen_20dp"
+                            android:gravity="center_horizontal" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="@color/home_thumbs_background"
+                    android:layout_margin="@dimen/dimen_5dp"
+                    android:padding="@dimen/dimen_5dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/ekumi_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/dimen_10dp"
+                        style="@style/ekumi_description"
+                        android:text="@string/ekumi_description" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
