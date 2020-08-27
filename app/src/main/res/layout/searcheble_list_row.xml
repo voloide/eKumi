@@ -127,8 +127,7 @@
                     style="@style/designacao_farmacia"
                     android:text="@{searcheble.aberto ? @string/pharmacy_open: @string/pharmacy_closed }"/>
             </LinearLayout>
-
-
+            
             <LinearLayout
                 android:layout_width="@dimen/dimen_0dp"
                 android:layout_weight="1"
