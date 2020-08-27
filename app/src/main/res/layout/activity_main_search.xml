@@ -3,51 +3,65 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     >
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/barLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <com.google.android.material.appbar.AppBarLayout
+        <FrameLayout
+            android:id="@+id/toolbar_container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+            android:layout_height="wrap_content">
 
-            <FrameLayout
-                android:id="@+id/toolbar_container"
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:background="?attr/colorPrimary"
-                    app:layout_scrollFlags="scroll|enterAlways"
-                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-                <com.miguelcatalan.materialsearchview.MaterialSearchView
-                    android:id="@+id/search_view"
-                    style="@style/MaterialSearchViewStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </FrameLayout>
-
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabs"
+            <com.miguelcatalan.materialsearchview.MaterialSearchView
+                android:id="@+id/search_view"
+                style="@style/MaterialSearchViewStyle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                app:tabTextColor="@color/colorPrimaryDark"
-                app:tabSelectedTextColor="@color/colorPrimary"
-                app:tabMode="fixed"
-                app:tabGravity="fill"/>
-        </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.viewpager.widget.ViewPager
+                android:layout_height="wrap_content" />
+        </FrameLayout>
+
+        <!--            <com.google.android.material.tabs.TabLayout-->
+        <!--                android:id="@+id/tabs"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:background="@color/white"-->
+        <!--                app:tabTextColor="@color/colorPrimaryDark"-->
+        <!--                app:tabSelectedTextColor="@color/colorPrimary"-->
+        <!--                app:tabMode="fixed"-->
+        <!--                app:tabGravity="fill"/>-->
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!--<androidx.viewpager.widget.ViewPager
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>-->
+
+
+    <LinearLayout
+        android:id="@+id/search_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@+id/barLayout"
+        >
+    </LinearLayout>
+
+</RelativeLayout>
 </layout>

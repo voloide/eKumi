@@ -2,20 +2,20 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".activities.farmacia.FarmaciaActivity">
+    tools:context="mz.co.insystems.service.ekumi.activities.farmacia.FarmaciaActivity">
 
     <data class="ActivityFarmaciaBinding">
         <variable
             name="user"
-            type="mz.co.insystems.mobicare.model.user.User"/>
+            type="mz.co.insystems.service.ekumi.model.user.User"/>
 
         <variable
             name="farmacia"
-            type="mz.co.insystems.mobicare.model.farmacia.Farmacia"/>
+            type="mz.co.insystems.service.ekumi.model.farmacia.Farmacia"/>
 
         <variable
             name="presenter"
-            type="mz.co.insystems.mobicare.activities.farmacia.FarmaciaActivityManager"/>
+            type="mz.co.insystems.service.ekumi.activities.farmacia.FarmaciaActivityManager"/>
     </data>
 
 

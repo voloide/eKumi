@@ -10,12 +10,16 @@
     <color name="hint_text_appearence">#a79991</color>
     <color name="light_green">#c7ccca</color>
     <color name="login_background">#ecf8f2</color>
+    <color name="item_panel">#dff7eb</color>
+    <color name="home_thumbs_background">#fbfbfb</color>
 
     <color name="spinner_back_color">#dff7eb</color>
 
 
 
     <color name="theme_primary">#0f9d58</color>
+    <color name="red_color">#d00018</color>
+
     <color name="theme_primary_dark">#0b663a</color>
     <color name="theme_primary_light">#1be784</color>
 
@@ -41,4 +45,5 @@
     <color name="search_items">#abf1cf</color>
     <color name="tab_bar">#057a41</color>
     <color name="farmaco_title">#4c4c4c</color>
+    <color name="black">#000000</color>
 </resources>

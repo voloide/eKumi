@@ -27,4 +27,7 @@
     <dimen name="row_padding_vertical">16dp</dimen>
     <dimen name="dim_160dp">160dp</dimen>
     <dimen name="dimen_12dp">12dp</dimen>
+    <dimen name="dimen_35dp">35dp</dimen>
+    <dimen name="dim_170dp">170dp</dimen>
+    <dimen name="dim_100dp">100dp</dimen>
 </resources>

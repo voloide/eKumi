@@ -7,7 +7,7 @@
     <data>
         <variable
             name="searcheble"
-            type="mz.co.insystems.mobicare.model.search.Searchble" />
+            type="mz.co.insystems.service.ekumi.model.search.Searchble" />
     </data>
 
     <RelativeLayout
@@ -20,6 +20,7 @@
 
 
         <LinearLayout
+            android:id="@+id/main_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -36,7 +37,7 @@
                     android:id="@+id/img_logo"
                     android:layout_width="80dp"
                     android:layout_height="90dp"
-                    android:src="@mipmap/ic_launcher"/>
+                    android:src="@mipmap/ic_list_icon"/>
 
             </RelativeLayout>
 
@@ -56,49 +57,127 @@
                         android:id="@+id/txv_nome"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="16dp"
                         android:layout_marginBottom="@dimen/dimen_4dp"
-                        android:textStyle="bold"
+                        style="@style/designacao_farmaco"
                         android:text="@{searcheble.designacao}"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@{searcheble.disponibilidade == 1 ? @string/drug_available : @string/drug_not_available }" />
 
                     <TextView
                         android:id="@+id/txv_location"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:drawableLeft="@drawable/ic_action_name"
-                        android:fontFamily="sans-serif"
+                        style="@style/designacao_farmacia"
                         android:lineSpacingExtra="8sp"
                         android:text="@{searcheble.farmaciaName}"
                         android:textAppearance="@style/TextAppearance.AppCompat"
                         android:typeface="normal" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/txv_available"
-                            android:layout_width="0dp"
-                            android:layout_weight="3"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:text="@{searcheble.disponibilidade == 1 ? @string/drug_available : @string/drug_not_available }" />
-
-                        <TextView
-                            android:id="@+id/txv_distance"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:text="@{searcheble.distancia }" />
-
-                    </LinearLayout>
-
                 </LinearLayout>
 
             </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/view_space"
+            android:layout_below="@+id/main_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_5dp"
+                android:background="@color/colorPrimaryDark"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_below="@+id/view_space"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/home_thumbs_background"
+            android:orientation="horizontal">
+
+
+            <LinearLayout
+                android:layout_width="@dimen/dimen_0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="@dimen/dimen_15dp"
+                    android:layout_height="@dimen/dimen_15dp"
+                    android:src="@mipmap/ic_time"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="@dimen/dimen_0dp"
+                android:layout_weight="5"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    style="@style/designacao_farmacia"
+                    android:text="@{searcheble.aberto ? @string/pharmacy_open: @string/pharmacy_closed }"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="@dimen/dimen_0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="@dimen/dimen_15dp"
+                    android:layout_height="@dimen/dimen_15dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="@dimen/dimen_0dp"
+                android:layout_weight="5"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    style="@style/farmacia_distancia"
+                    android:text="@{searcheble.preco+`MT`}" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="@dimen/dimen_0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="@dimen/dimen_15dp"
+                    android:layout_height="@dimen/dimen_15dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@mipmap/ic_location"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="@dimen/dimen_0dp"
+                android:layout_weight="5"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/txv_distance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    style="@style/farmacia_distancia"
+                    android:text="@{searcheble.distancia}"/>
+            </LinearLayout>
+
+
         </LinearLayout>
     </RelativeLayout>
 </layout>

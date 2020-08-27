@@ -8,7 +8,7 @@
     <data>
         <variable
             name="farmaco"
-            type="mz.co.insystems.mobicare.model.farmaco.Farmaco" />
+            type="mz.co.insystems.service.ekumi.model.farmaco.Farmaco" />
     </data>
 
     <LinearLayout
